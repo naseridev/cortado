@@ -1,10 +1,10 @@
 # Cortado
 
-Cortado is a transparent TUN-to-SOCKS5 tunnel for Linux. It creates a TUN
-interface, rewrites the system routing table to funnel traffic through it, runs
-a userspace network stack to terminate the captured flows, and relays each
-connection out through an upstream SOCKS5 proxy. It is a tun2socks-class
-forwarding engine intended for always-on, system-wide proxying.
+Cortado is a transparent TUN-to-SOCKS5 tunnel for Linux, macOS, and Windows.
+It creates a TUN interface, rewrites the system routing table to funnel traffic
+through it, runs a userspace network stack to terminate the captured flows, and
+relays each connection out through an upstream SOCKS5 proxy. It is a
+tun2socks-class forwarding engine intended for always-on, system-wide proxying.
 
 ## Features
 
@@ -88,8 +88,9 @@ always-on tunnel is actually stable and fast without you babysitting it.
 
 ### When it isn't (be honest)
 
-- **Linux only, today.** The macOS (utun) and Windows (Wintun) seams exist but
-  are incomplete; tun2socks variants run on more platforms now.
+- **macOS and Windows are not yet complete.** The platform seams exist and
+  compile, but the backends are not runtime-tested; tun2socks variants run fully
+  on those platforms today.
 - **SOCKS5 only.** The Go tun2socks also speaks Shadowsocks, HTTP, and others —
   if you need those upstreams, it's the better fit.
 - **Younger and smaller.** `tun2socks` is battle-tested across a huge install
@@ -199,9 +200,9 @@ sudo ip route del 128.0.0.0/1
 (`/etc/resolv.conf`) are all implemented and tested.
 
 The codebase carries platform seams for **macOS** (utun) and **Windows**
-(Wintun) behind a common interface, and they now include the same automatic
-tuning detection as Linux — MTU and default-IPv6-gateway discovery via the
-platform's native tooling (`route`/`ifconfig` on macOS, `Get-NetRoute` /
+(Wintun) behind a common interface, and they include the same automatic tuning
+detection as Linux — MTU and default-IPv6-gateway discovery via the platform's
+native tooling (`route`/`ifconfig` on macOS, `Get-NetRoute` /
 `Get-NetIPInterface` on Windows). These seams compile and type-check for their
 respective targets, but the backends are **not yet complete or runtime-tested**;
 treat them as in-progress. When they are finished they inherit Cortado's
