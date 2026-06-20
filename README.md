@@ -86,17 +86,6 @@ always-on tunnel is actually stable and fast without you babysitting it.
 - You're deploying on machines with very different memory / fd limits and don't
   want to hand-pick a connection cap for each.
 
-### When it isn't (be honest)
-
-- **macOS and Windows are not yet complete.** The platform seams exist and
-  compile, but the backends are not runtime-tested; tun2socks variants run fully
-  on those platforms today.
-- **SOCKS5 only.** The Go tun2socks also speaks Shadowsocks, HTTP, and others —
-  if you need those upstreams, it's the better fit.
-- **Younger and smaller.** `tun2socks` is battle-tested across a huge install
-  base. If you already have a tun2socks setup you never touch and never lose DNS
-  over, switching buys you little.
-
 ## Installation
 
 ```sh
